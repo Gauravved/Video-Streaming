@@ -22,8 +22,8 @@ function MyProfile() {
             <div className='heading'>
                 <h1>My Profile</h1>
             </div>
-            <input type="text" name='channelName' id='channelName' placeholder='Channel Name' value={currentUser.channelName}/>
-            <input type={'email'} name='email' id='email' placeholder='Email Address' value={currentUser.email} />
+            <input readOnly='true' type="text" name='channelName' id='channelName' placeholder='Channel Name' value={currentUser.channelName}/>
+            <input readOnly='true' type={'email'} name='email' id='email' placeholder='Email Address' value={currentUser.email} />
             {/* <div className="passwordFields">
                 <input type="password" name='password' id='password' placeholder='Password' /> */}
                 {/* <span className='icon'><Icon icon={typePassIcon} size={20} onClick={()=>{toogleHandler()}} ></Icon></span> */}
@@ -79,6 +79,7 @@ const css = {
           /* background-color: white; */
           width: 100%;
           height: 50px;
+          cursor: not-allowed;
           background-color: transparent;
           outline: none;
           border: 1px solid black;
