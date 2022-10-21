@@ -7,22 +7,6 @@ import Header from '../components/Header';
 function DashBoard() {
   const [currentUser, setCurrentUser] = useState(undefined);
   const navigate = useNavigate();
-  const menuHandler = (e,index,text)=>{
-    console.log();
-    if(text === "Log Out"){
-        localStorage.removeItem('video-streamer');
-        window.location.reload();
-    }
-    if(text === "Log In"){
-        navigate("/login");
-    }
-    if(text === "Create Channel"){
-        navigate("/registration");
-    }
-    if(text === "My Profile"){
-      navigate('/myprofile', {state: {currentUser}});
-    }
-  }
   useEffect(()=>{
     defaultFunction();
     async function defaultFunction(){
@@ -34,8 +18,8 @@ function DashBoard() {
   return (
     <>
       <ToastContainer></ToastContainer>
+      <Header currentUser={JSON.parse(localStorage.getItem('video-streamer'))} ></Header>
       <Container>
-        <Header currentUser={JSON.parse(localStorage.getItem('video-streamer'))} menuHandler={menuHandler} ></Header>
       </Container>
     </>
   )

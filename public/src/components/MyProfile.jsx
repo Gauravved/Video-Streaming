@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import styled from 'styled-components';
 import Header from './Header';
+import background from '../assets/background.jpg'
 
 
 function MyProfile() {
@@ -16,14 +17,20 @@ function MyProfile() {
     return (
         <>
         {/* <ToastContainer /> */}
-            <Header currentUser={currentUser} />
         <Container>
+            <Header currentUser={currentUser} />
             <form>
             <div className='heading'>
                 <h1>My Profile</h1>
             </div>
-            <input readOnly='true' type="text" name='channelName' id='channelName' placeholder='Channel Name' value={currentUser.channelName}/>
-            <input readOnly='true' type={'email'} name='email' id='email' placeholder='Email Address' value={currentUser.email} />
+            <div className='Information'>
+              <label htmlFor="">Channel Name</label>
+              <input readOnly='true' type="text" name='channelName' id='channelName' placeholder='Channel Name' value={currentUser.channelName}/>
+            </div>
+            <div className="Information">
+              <label htmlFor="">Email </label>  
+              <input readOnly='true' type={'email'} name='email' id='email' placeholder='Email Address' value={currentUser.email} />  
+            </div>
             {/* <div className="passwordFields">
                 <input type="password" name='password' id='password' placeholder='Password' /> */}
                 {/* <span className='icon'><Icon icon={typePassIcon} size={20} onClick={()=>{toogleHandler()}} ></Icon></span> */}
@@ -45,9 +52,9 @@ const css = {
     borderBottom: "2px solid #4be3fa",
   }
   const Container = styled.div`
-    background-color: white;
-    /* background-size: cover; */
-    height: 50vh;
+    background: url(${background});
+    background-size: cover;
+    height: 100vh;
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -58,6 +65,7 @@ const css = {
       align-items: center;
       justify-content: center;
       gap: 1rem;
+      margin-bottom: 40px;
       display: flex;
       h1{
         text-transform: uppercase;
@@ -75,12 +83,20 @@ const css = {
         gap: 2rem;
         flex-direction: column;
         padding: 2rem 5rem;
-        input{
-          /* background-color: white; */
+        .Information{
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
           width: 100%;
-          height: 50px;
+          label{
+            font-size: large;
+          }
+        }
+        input{
+          background-color: #c4c4c4d5;
+          width: 60%;
+          height: 40px;
           cursor: not-allowed;
-          background-color: transparent;
           outline: none;
           border: 1px solid black;
           border-bottom: 2px solid black;
@@ -89,13 +105,6 @@ const css = {
           padding-left: 16px;
           color: black;
           transition: 0.4s ease-in-out;
-          :hover{
-            border: 1px solid #4be3fa;
-            border-bottom: 2px solid #4be3fa;
-          }
-          :focus{
-            ${css}
-          }
           ::-webkit-input-placeholder{
             color: black;
           }

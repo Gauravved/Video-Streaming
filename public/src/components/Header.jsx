@@ -2,19 +2,40 @@ import React,{useState} from 'react'
 import Icon from 'react-icons-kit';
 import noprofile from '../assets/no_profile.png'
 import { logOut, user, edit } from 'react-icons-kit/feather';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { logIn } from 'react-icons-kit/feather';
 import { plusSquare } from 'react-icons-kit/feather';
 import logo from '../assets/Logo2.png'
 
-export default function Header({currentUser, menuHandler}) {
+export default function Header({currentUser}) {
+    const navigate = useNavigate();
     const icons = [user,edit, logOut ];
     const text = ["My Profile", "Edit", "Log Out"];
     const loginText = ["Log In", "Create Channel"];
     const loginIcons = [logIn, plusSquare];
     const [open, setOpen] = useState(false);
     
+  const menuHandler = (e,index,text)=>{
+    console.log();
+    if(text === "Log Out"){
+        localStorage.removeItem('video-streamer');
+        navigate("/");
+        window.location.reload();
+    }
+    if(text === "Log In"){
+        navigate("/login");
+    }
+    if(text === "Create Channel"){
+        navigate("/registration");
+    }
+    if(text === "My Profile"){
+      navigate('/myprofile', {state: {currentUser}});
+    }
+    if(text === "Edit"){
+        navigate("/editprofile",{ state: {currentUser} });
+    }
+  }
     const DropDownList = (props)=>{
         return(
             <li className='dropdownitem' onClick={(e)=>{menuHandler(e,props.index, props.text)}}>
@@ -26,7 +47,7 @@ export default function Header({currentUser, menuHandler}) {
     return (
         <HeaderContainer>
             {/* <h3 className='title' >Video Streamer</h3> */}
-            <img src={logo} alt="" className='logo' />
+            <img src={logo} alt="" className='logo' onClick={()=>{navigate("/")}} />
             {
                 currentUser ?
                 <>
@@ -94,19 +115,20 @@ export default function Header({currentUser, menuHandler}) {
 }
 const HeaderContainer = styled.div`
     display: flex;
+    position: fixed;
+    width: 98%;
+    top: 0px;
     height: auto;
     align-items: center;
     justify-content: space-between;
-    margin-bottom: 30px;
     padding: 20px;
     border-bottom: 1px solid rgba(0,0,0,0.5);
     background-color: red;
-    border-bottom-left-radius: 10px;
-    border-bottom-right-radius: 10px;
     .logo{
         height: 45px;
         width: 170px;
         padding-left: 30px;
+        cursor: pointer;
     }
     .title{
         padding-left: 14px;

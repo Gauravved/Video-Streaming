@@ -5,6 +5,7 @@ import Registration from './pages/Registration'
 import DashBoard from './pages/DashBoard';
 import Login from './pages/Login';
 import MyProfile from './components/MyProfile';
+import EditProfile from './components/EditProfile';
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
           <Route exact path="/" element={<DashBoard />} />
           <Route exact path="/login" element={<Login />} />
           <Route exact path='/myprofile' element={<MyProfile />} />
+          <Route exact path="/editprofile" element={<EditProfile />} />
         </Routes>
       </Routers>
     </>
